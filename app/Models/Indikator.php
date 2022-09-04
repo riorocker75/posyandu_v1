@@ -5,13 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pegawai extends Model
+class Indikator extends Model
 {
     use HasFactory;
-        protected $table= "pegawai";
+    protected $table= "indikator";
     public $timestamps = false;
-        protected $fillable =[
-       'nama',
-       'nip',
-    ];
 }

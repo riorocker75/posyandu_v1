@@ -44,8 +44,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{url('/')}}" class="brand-link">
-      <img src="{{url('/')}}/logo/logo.png" alt="UPTD PUSKESMAS" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">UPTD PUSKESMAS</span>
+      {{-- <img src="{{url('/')}}/logo/logo.png" alt="UPTD PUSKESMAS" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
+      <span class="brand-text font-weight-light">Posyandu</span>
     </a>
 
     <!-- Sidebar -->
@@ -75,56 +75,17 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Data Master
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{url('/dashboard/pasien/data')}}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Pasien</p>
-                </a>
-              </li>
                <li class="nav-item">
-                <a href="{{url('/dashboard/dokter/data')}}" class="nav-link">
+                <a href="{{url('/dashboard/balita/data')}}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Data Dokter</p>
+                  <p>Data Balita</p>
                 </a>
               </li>
+              
               <li class="nav-item">
-                <a href="{{url('/dashboard/pegawai/data')}}" class="nav-link">
+                <a href="{{url('/dashboard/indikator/data')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Data Pegawai</p>
-                </a>
-              </li>
-                 <li class="nav-item">
-                <a href="{{url('/dashboard/poli/data')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Poli</p>
-                </a>
-              </li>
-                 <li class="nav-item">
-                <a href="{{url('/dashboard/rekam/data')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Rekam Medis</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('/dashboard/rujukan/data')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Surat Rujukan</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{url('/dashboard/kunjungan/data')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Kunjungan Pasien</p>
+                  <p>Data Pemantauan</p>
                 </a>
               </li>
 
@@ -134,47 +95,9 @@
                   <p>Data Role</p>
                 </a>
               </li>
-            </ul>
-          </li>
        
 
-             <li class="nav-item">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-               Profile Puskesmas
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          <ul class="nav nav-treeview">
-              
-              <li class="nav-item">
-                <a href="{{url('/dashboard/pelayanan')}}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pelayanan</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('/dashboard/visi-misi')}}" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Visi Misi</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('/dashboard/struktur')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Struktur</p>
-                </a>
-              
-              </li>
-               <li class="nav-item">
-                <a href="{{url('/dashboard/galeri')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Galeri</p>
-                </a>
-              
-              </li>
-            </ul>
+           
              <li class="nav-item">
                 <a href="{{url('/dashboard/pengaturan/data')}}" class="nav-link ">
                  <i class="fa fa-lock nav-icon" aria-hidden="true"></i>
