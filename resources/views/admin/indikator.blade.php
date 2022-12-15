@@ -26,11 +26,38 @@
       <div class="container-fluid">
          <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Data PAntauan</h3>
+                <h3 class="card-title">Data Pantauan</h3>
                 <a href="{{url('/dashboard/indikator/add')}}" class="btn btn-primary float-right">Tambah data</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+
+                <form action="{{url('/dashboard/cetak/pantauan')}}" method="post">
+                  @csrf
+                  <div class="row">
+                      <div class="col-lg-3 col-md-6 col-12">
+                          <div class="form-group">
+                              <label for="">Dari Tanggal</label>
+                             <input type="date" class="form-control" name="dari" id="dari" value="{{date('Y-m-d')}}">
+                            </div> 
+                      </div>
+                      <div class="col-lg-3 col-md-6 col-12">
+                          <div class="form-group">
+                              <label for="">Sampai Tanggal</label>
+                              <input type="date" class="form-control" name="sampai" id="sampai" value="{{date('Y-m-d')}}">
+  
+                            </div> 
+                      </div>
+  
+                    <button type="submit" id="lap_filter" style="margin-top:32px;margin-bottom:20px" 
+                      class="btn btn-outline-primary float-right">
+                      Print &nbsp;
+                      <i class="fa fa-print"></i>
+                      </button>
+                  
+                  </div>
+                </form>
+
                 <table id="table1" class="table table-bordered table-striped">
                   <thead>
                   <tr>

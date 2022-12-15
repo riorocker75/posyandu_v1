@@ -45,7 +45,7 @@
     <!-- Brand Logo -->
     <a href="{{url('/')}}" class="brand-link">
       {{-- <img src="{{url('/')}}/logo/logo.png" alt="UPTD PUSKESMAS" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
-      <span class="brand-text font-weight-light">Posyandu</span>
+      <span class="brand-text font-weight-light"></span>
     </a>
 
     <!-- Sidebar -->
@@ -54,7 +54,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
        
         <div class="info">
-          <a href="#" class="d-block">{{" Nama" }}</a>
+          <a href="#" class="d-block">{{"Posyandu Pantai Gemi"}}</a>
         </div>
       </div>
 

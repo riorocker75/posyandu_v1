@@ -455,221 +455,6 @@ function  rekam(){
             'data' =>$data
         ]);
 }
-function  rekam_add(){
-    return view('admin.rekam_add');
-}
-function  rekam_act(Request $request){
-    $request->validate([
-            'pasien' => 'required',
-    ]);
-    $kode_rekam=mt_rand(100000, 999999);
-
-        $date=date('Y-m-d');
-        if($request->cek_rujuk == "1"){
-            // jika dirujuk
-
-             DB::table('rekam')->insert([
-                    'id_pasien' => $request->pasien,
-                    'id_dokter' => $request->dokter,
-
-                    'kode_rekam'=> $kode_rekam,
-                    'id_poli'=> $request->poli,
-                    'petugas' => $request->pegawai,
-                    'kartu_berobat' => $request->kartu,
-                    'tanggal' => $date,
-                    'diagnosa' => $request->diagnosa,
-                    'pengobatan' => $request->pengobatan,
-                    'tanggal_keluar' =>$request->tgl_keluar,
-                    'status_rujuk' => 1,
-                    'status' => 1
-            ]);
-
-             DB::table('rujukan')->insert([
-                 'kartu_berobat'=> $request->kartu,
-                 'id_pasien' => $request->pasien,
-                 'id_rekam'=> $kode_rekam,
-                'rs_tujuan' => $request->rs_rujuk,
-                'tgl_surat' => $request->tgl_rujuk
-            ]);
-
-        }else{
-            if($request->kartu == "3"){
-              DB::table('rekam')->insert([
-                    'id_pasien' => $request->pasien,
-                    'id_dokter' => $request->dokter,
-
-                    'kode_rekam'=> $kode_rekam,
-                    'id_poli'=> $request->poli,
-                     'petugas' => $request->pegawai,
-                    'kartu_berobat' => $request->kartu,
-                    'tanggal' => $date,
-                    'uang_diterima'=>"30000",
-                    'diagnosa' => $request->diagnosa,
-                    'pengobatan' => $request->pengobatan,
-                    'tanggal_keluar' =>$request->tgl_keluar,
-                    'status_rujuk' => 0,
-                    'status' => 1
-            ]);  
-
-            }else{
-                DB::table('rekam')->insert([
-                    'id_pasien' => $request->pasien,
-                    'id_dokter' => $request->dokter,
-
-                    'kode_rekam'=> $kode_rekam,
-                    'id_poli'=> $request->poli,
-                     'petugas' => $request->pegawai,
-                    'uang_diterima'=>"0",
-                    'kartu_berobat' => $request->kartu,
-                    'tanggal' => $date,
-                    'diagnosa' => $request->diagnosa,
-                    'pengobatan' => $request->pengobatan,
-                    'tanggal_keluar' =>$request->tgl_keluar,
-                    'status_rujuk' => 0,
-                    'status' => 1
-            ]);
-            }
-           
-        }
-    
-
-        return redirect('/dashboard/rekam/data')->with('alert-success','Data sudah terkirim');
-
-
-}
-function  rekam_edit($id){
-   $data=Rekam::where('id',$id)->get();
-    return view('admin.rekam_edit',[
-        'data' =>$data
-    ]);
-
-}
-function  rekam_update(Request $request){
-    $request->validate([
-            'pasien' => 'required',
-    ]);
-    $kode_rekam=$request->kode_rekam;
-    $data_rujuk=Rekam::where('kode_rekam',$kode_rekam)->first();
-    $date=date('Y-m-d');
-
-    if($data_rujuk->status_rujuk == "0"){
-        if($request->cek_rujuk == "1"){
-            // jika dirujuk
-
-             DB::table('rekam')->where('kode_rekam',$kode_rekam)->update([
-                    'id_pasien' => $request->pasien,
-                    'id_dokter' => $request->dokter,
-
-                    'id_poli'=> $request->poli,
-                    'petugas' => $request->pegawai,
-                    'kartu_berobat' => $request->kartu,
-                    'diagnosa' => $request->diagnosa,
-                    'pengobatan' => $request->pengobatan,
-                    'tanggal_keluar' =>$request->tgl_keluar,
-                    'status_rujuk' => 1,
-                    'status' => 1
-            ]);
-
-             DB::table('rujukan')->where('id_rekam',$kode_rekam)->update([
-                 'kartu_berobat'=> $request->kartu,
-                 'id_pasien' => $request->pasien,
-                'rs_tujuan' => $request->rs_rujuk,
-                'tgl_surat' => $request->tgl_rujuk
-            ]);
-
-        }else{
-              DB::table('rekam')->where('kode_rekam',$kode_rekam)->update([
-                    'id_pasien' => $request->pasien,
-                    'id_poli'=> $request->poli,
-                     'petugas' => $request->pegawai,
-                    'kartu_berobat' => $request->kartu,
-                    'tanggal' => $date,
-                    'diagnosa' => $request->diagnosa,
-                    'pengobatan' => $request->pengobatan,
-                    'tanggal_keluar' =>$request->tgl_keluar,
-                    'status_rujuk' => 0,
-                    'status' => 1
-            ]);
-        }
-
-
-    }
-
-        return redirect('/dashboard/rekam/data')->with('alert-success','Data sudah terkirim');
-
-
-}
-function  rekam_delete(){}
-
-
-// data rujukan
-function  rujukan(){
-   $data=Rekam::orderBy('id','desc')->where('status_rujuk','1')->get();
-        return view('admin.rujukan',[
-            'data' =>$data
-        ]);
-}
-
-
-function cetak_kwitansi($id){
-    $dt=Rekam::where('id',$id)->first();
-    return view('cetak.kwitansi',[
-        'dt'=> $dt
-    ]);
-}
-
-function cetak_rujukan($id){
-    $dt=Rujukan::where('id_rekam',$id)->first();
-
-    return view('cetak.surat_rujuk',[
-        'dt'=> $dt
-    ]);
-}
-
-
- function cek_rujuk(Request $request){
-    $cek_status=$request->cek_rujuk;
-
-    if($cek_status == 1){
-        echo"
-         <div class='form-group'>
-            <label >Rumah Sakit Rujukan</label>
-            <input type='text' class='form-control'  name='rs_rujuk' value='Rumah Sakit Umum Hasanuddin Kuta Cane' readonly>
-        </div>
-        <div class='form-group'>
-            <label >Tanggal surat</label>
-            <input type='date' class='form-control'  name='tgl_rujuk'>
-        </div>
-        ";
-    }else{
-        
-    }
-
- }
-
-    function cetak_rujukan_data(){
-            $year=date('Y');
-                $data=Rekam::whereYear('tanggal',$year)->get();
-                return view('cetak.cetak_rujukan',[
-                    'data'=> $data
-                ]);
-
-        }
-
-        function kunjungan(){
-        $data=Rekam::orderBy('id','asc')->get();
-        return view('admin.kunjungan',[
-            'data' =>$data
-        ]);
-    }
-        function cetak_kunjungan(){
-            $year=date('Y');
-             $data=Rekam::whereYear('tanggal',$year)->get();
-            return view('cetak.cetak_kunjungan',[
-                'data'=> $data
-            ]);
-        } 
-
 
 
  function profile(){
@@ -779,6 +564,30 @@ function cetak_rujukan($id){
  }
 
 
+ function cetak_pantuan(Request $request){
+    $dari =$request->dari;
+    $sampai =$request->sampai;  
+
+    $fdari=format_tanggal(date('Y-m-d',strtotime($dari)));
+    $fsampai=format_tanggal(date('Y-m-d',strtotime($sampai)));
+
+    $cek_data=DB::table('surat_masuk')
+            ->where('status',1)
+            ->whereBetween('tanggal_masuk', [$dari, $sampai])
+            ->orderBy('tanggal_masuk','desc')
+            ->get();
+
+    if(count($cek_data) < 1){
+         return redirect()->back();
+    }
+            
+    return view('cetak.cetak_surat_masuk',[
+        'data' =>$cek_data,
+        'dari' => $fdari,
+        'sampai' => $fsampai,
+    ]);
+
+}
 
 
 
