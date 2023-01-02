@@ -31,6 +31,26 @@
             $jlh_laki= App\Models\Balita::where('jenis_kelamin',1)->count(); 
             $jlh_per= App\Models\Balita::where('jenis_kelamin',2)->count(); 
       
+            $pantauan = App\Models\Indikator::select('id', 'tanggal')
+              ->get()
+              ->groupBy(function($date) {
+                  return \Carbon\Carbon::parse($date->tanggal)->format('m'); // grouping by months
+              });
+
+              $usermcount = [];
+              $userArr = [];
+
+              foreach ($pantauan as $key => $value) {
+                  $usermcount[(int)$key] = count($value);
+              }
+
+              for ($i = 1; $i <= 12; $i++) {
+                if (!empty($usermcount[$i])) {
+                    $userArr[$i] = $usermcount[$i];
+                } else {
+                    $userArr[$i] = 0;
+                }
+              }
 
         @endphp
       <div class="container-fluid">
@@ -74,7 +94,7 @@
               <div class="col-lg-6 col-md-6 col-12">
                 <div class="card">
                   <div class="card-header">
-                    Jumlah Anak
+                    Chart Anak
                   </div>
                   <div style="width: 300px;height:300px;text-align:center;">
                     <canvas id="jlhBayi"></canvas>
@@ -82,7 +102,20 @@
                 </div>
   
                 </div>
+
+                <div class="col-lg-6 col-md-6 col-12">
+                  <div class="card">
+                    <div class="card-header">
+                      Chart Pantauan
+                    </div>
+                    <div >
+                      <canvas id="jlhPantauan"></canvas>
+                    </div>
+                  </div>
+    
+                  </div>
                
+                 
          </div>
       
 
@@ -110,7 +143,43 @@
   });
 
   
+
+  
+
+
+
 </script>
 
+<script>
+  const line = document.getElementById('jlhPantauan');
+  var bulan = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December'
+	];
+new Chart(line, {
+    type: 'line',
+    data: {
+      labels: bulan,
+      datasets: [{
+        label: 'Jumlah Pantauan',
+        data:  {{response()->json(array_values($userArr))->getContent()}},
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    },
+
+  });
+</script>
 
 @endsection

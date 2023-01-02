@@ -41,8 +41,10 @@
 <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('dist/js/custom.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://www.chartjs.org/samples/2.9.4/utils.js"></script>
+
+<script src="{{asset('dist/js/custom.js')}}"></script>
 
 
 
