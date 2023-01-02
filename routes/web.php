@@ -50,6 +50,8 @@ Route::get('/dashboard/indikator/edit/{id}', [AdminCtrl::class,'indikator_edit']
 Route::post('/dashboard/indikator/update', [AdminCtrl::class,'indikator_update']);
 Route::get('/dashboard/indikator/delete/{id}', [AdminCtrl::class,'indikator_delete']);
 
+Route::post('/dashboard/cetak/pantauan', [AdminCtrl::class,'cetak_pantauan']);
+
 
 
 

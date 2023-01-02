@@ -564,24 +564,24 @@ function  rekam(){
  }
 
 
- function cetak_pantuan(Request $request){
+ function cetak_pantauan(Request $request){
     $dari =$request->dari;
     $sampai =$request->sampai;  
 
     $fdari=format_tanggal(date('Y-m-d',strtotime($dari)));
     $fsampai=format_tanggal(date('Y-m-d',strtotime($sampai)));
 
-    $cek_data=DB::table('surat_masuk')
+    $cek_data=DB::table('indikator')
             ->where('status',1)
-            ->whereBetween('tanggal_masuk', [$dari, $sampai])
-            ->orderBy('tanggal_masuk','desc')
+            ->whereBetween('tanggal', [$dari, $sampai])
+            ->orderBy('tanggal','desc')
             ->get();
 
     if(count($cek_data) < 1){
          return redirect()->back();
     }
             
-    return view('cetak.cetak_surat_masuk',[
+    return view('cetak.cetak_pantauan',[
         'data' =>$cek_data,
         'dari' => $fdari,
         'sampai' => $fsampai,

@@ -401,3 +401,20 @@ function status_transfer($status){
             break;
             }
         }
+
+        function format_cek($format){
+            if($format == "y"){
+                echo "v";
+            }elseif($format == "n"){
+                echo "x";
+            }
+        }
+
+        function format_kelamin($f){
+            if($f == 1){
+                echo "L";
+            }elseif($f == 2){
+                echo "P";
+            }
+
+        }

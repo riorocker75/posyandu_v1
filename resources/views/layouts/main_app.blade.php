@@ -42,6 +42,7 @@
 
 <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('dist/js/custom.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
 
@@ -145,7 +146,6 @@
     });
   });
 </script>
-
 <script>
   $(function () {
     $(document).on('click', '[data-toggle="lightbox"]', function(event) {

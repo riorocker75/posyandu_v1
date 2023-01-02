@@ -108,16 +108,16 @@
                 </div>
 
             <div class="judul_surat">
-               <p style="font-size:20px">PEMERINTAH KABUPATEN ACEH TENGGARA</p> 
-              <p style="line-height: 0;margin-top:16px">UPTD PUSKEMAS SUKA MAKMUR</p>
-               <p style="margin-top:-10px"> KECAMATAN SEMADAM</p>
+               <p style="font-size:20px">PEMERINTAH KABUPATEN LANGKAT</p> 
+              <p style="line-height: 0;margin-top:16px">POSYANDU PANTAI GEMI</p>
+               {{-- <p style="margin-top:-10px"> KECAMATAN SEMADAM</p> --}}
               
-               <p style="font-size:12px;font-weight:400">Jln. Lawe Breingin Horas - Semadam Asal Kode Pos 24678</p>
+               {{-- <p style="font-size:12px;font-weight:400">Jln. Lawe Breingin Horas - Semadam Asal Kode Pos 24678</p> --}}
             </div>
         </div>
 
    <div style="text-align:center;margin-top:30px">
-        <h5> Rekapan Kunjungan Pasien Pertahun </h5>
+        <h5> Formulir Pemantauan Bulanan Anak</h5>
 			<h5>{{date('Y')}}</h5>
    </div>
    <table id="absensi" class="table table-bordered table-hover">

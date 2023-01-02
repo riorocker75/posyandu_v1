@@ -28,6 +28,8 @@
         @php
             $jlh_balita= App\Models\Balita::where('status',1)->count(); 
             $jlh_indikator= App\Models\Indikator::where('status',1)->count();   
+            $jlh_laki= App\Models\Balita::where('jenis_kelamin',1)->count(); 
+            $jlh_per= App\Models\Balita::where('jenis_kelamin',2)->count(); 
       
 
         @endphp
@@ -67,12 +69,48 @@
           
          </div>
 
+         <div class="row">
+            
+              <div class="col-lg-6 col-md-6 col-12">
+                <div class="card">
+                  <div class="card-header">
+                    Jumlah Anak
+                  </div>
+                  <div style="width: 300px;height:300px;text-align:center;">
+                    <canvas id="jlhBayi"></canvas>
+                  </div>
+                </div>
+  
+                </div>
+               
+         </div>
+      
+
 
 
       </div>  
       </section>   
 
 </div>  
+
+<script>
+  const ctx = document.getElementById('jlhBayi');
+
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Laki-laki', 'Perempuan', ],
+      datasets: [{
+        label: 'Jumlah Bayi',
+        data: [{{$jlh_laki}}, {{$jlh_per}}],
+        borderWidth: 1
+      }]
+    },
+
+  });
+
+  
+</script>
 
 
 @endsection
