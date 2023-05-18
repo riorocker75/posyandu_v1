@@ -136,10 +136,25 @@
                     <div class="vertical">Jenis Kelamin L/P</div>
                 </th>
                 <th>Tanggal Lahir</th>
-                <th>Status Gizi</th>
+                {{-- <th>Status Gizi</th> --}}
                 <th>Umur
                     <br>Bulan
                 </th>
+                <th>Tinggi
+                    <br>Badan
+                </th>
+
+                <th>Berat
+                    <br>Badan
+                </th>
+
+                <th>Panjang
+                    <br>Badan
+                </th>
+
+                <th>Suntikan
+                </th>
+
                 <th width="20%">Hasil
                 </th>
                 <th>
@@ -192,9 +207,14 @@
 				<td>{{$balita->nama}} </td>
 				<td>{{format_kelamin($balita->jenis_kelamin)}}</td>
 				<td>{{format_tanggal(date('Y-m-d',strtotime($balita->tanggal_lahir)))}}</td>
-				<td></td>
+				{{-- <td></td> --}}
 				<td>{{$balita->umur}} </td>
-				<td></td>
+				<td>{{$dt->tinggi}}</td>
+				<td>{{$dt->berat}}</td>
+				<td>{{$dt->panjang}}</td>
+				<td>{{$dt->suntikan}}</td>
+
+				<td>{{format_hasil($dt->hasil)}}</td>
 				<td>
                     {{format_cek($dt->imunisasi_dasar)}}
                 </td>

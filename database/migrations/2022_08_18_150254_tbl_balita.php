@@ -20,6 +20,8 @@ class TblBalita extends Migration
                  $table->text('jenis_kelamin')->nullable();
                  $table->dateTime('tanggal_lahir')->nullable();
                  $table->text('umur')->nullable();
+                 $table->text('orang_tua')->nullable();
+
                  $table->text('status')->nullable();
             });
         }

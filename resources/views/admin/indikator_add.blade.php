@@ -47,15 +47,46 @@
                             @endforeach
                         </select>
                    </div>  
-                   
-                   <div class="form-group">
-                    <label for="exampleInputEmail1">Tanggal Input</label>
 
-                        <input type="date" class="form-control" name="tanggal" value="{{date('Y-m-d')}}">
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Tinggi badan</label>
+                        <input type="text" class="form-control" name="tinggi" required>
                    </div>
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Berat badan</label>
+                        <input type="text" class="form-control" name="berat" required>
+                   </div>
+
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Panjang</label>
+                        <input type="text" class="form-control" name="panjang" required>
+                   </div>
+
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Suntikan Imunisasi</label>
+                        <input type="text" class="form-control" name="suntikan" required>
+                   </div>
+
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Hasil Pemantauan</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio"value="y" name="hasil">
+                            <label class="form-check-label">Sehat</label>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="n" name="hasil">
+                        <label class="form-check-label">Stunting</label>
+                    </div>
+                 </div>
+
+                 <div class="form-group">
+                    <label for="exampleInputEmail1">Tanggal Input</label>
+                        <input type="date" class="form-control" name="tanggal" value="{{date('Y-m-d')}}" required>
+                   </div>
+                  
                 </div>
                  <div class="col-md-6">
-                         
 
                              <div class="form-group">
                                 <label for="exampleInputEmail1">Pemberian Imunisasi Dasar</label>

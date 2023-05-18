@@ -75,6 +75,8 @@ class AdminCtrl extends Controller
             'jenis_kelamin' =>$request->jenis_kelamin,
             'tanggal_lahir'=> $request->tgl_lhr,
             'umur'=> $request->umur,
+            'orang_tua'=> $request->orang_tua,
+
             'status' => 1
         ]);
 
@@ -100,6 +102,7 @@ class AdminCtrl extends Controller
             'jenis_kelamin' =>$request->jenis_kelamin,
             'tanggal_lahir'=> $request->tgl_lhr,
             'umur'=> $request->umur,
+            'orang_tua'=> $request->orang_tua,
             'status' => 1
         ]);
 
@@ -144,6 +147,13 @@ class AdminCtrl extends Controller
             'akta_lahir' => $request->akta_lahir,
             'jaminan_kesehatan' => $request->jaminan_kesehatan,
             'pengasuhan' => $request->pengasuhan,
+
+            'tinggi' => $request->tinggi,
+            'berat' => $request->berat,
+            'panjang' => $request->panjang,
+            'suntikan' => $request->suntikan,
+            'hasil' => $request->hasil,
+
             'tanggal' => $request->tanggal,
             'status' => 1
         ]);
@@ -176,6 +186,13 @@ class AdminCtrl extends Controller
             'akta_lahir' => $request->akta_lahir,
             'jaminan_kesehatan' => $request->jaminan_kesehatan,
             'pengasuhan' => $request->pengasuhan,
+
+            'tinggi' => $request->tinggi,
+            'berat' => $request->berat,
+            'panjang' => $request->panjang,
+            'suntikan' => $request->suntikan,
+            'hasil' => $request->hasil,
+
             'tanggal' => $request->tanggal,
             'status' => 1
         ]);
@@ -190,293 +207,7 @@ class AdminCtrl extends Controller
      }
 
 
-    // pasien
-    function pasien(){
-        return view('pasien.pasien');
-    }
-
-    function pasien_act(Request $request){
-         $request->validate([
-            'nama' => 'required',
-            'nik' => 'required'
-        ]);
-
-         $date=date('Y-m-d');
-
-         DB::table('pasien')->insert([
-            'nama' => $request->nama,
-            'nik' =>$request->nik,
-            'kartu_berobat'=> $request->kartu,
-            'tanggal_lahir'=> $request->tgl_lhr,
-            'tempat_lahir' => $request->tmp_lhr,
-            'agama'=> $request->agama,
-            'pekerjaan'=> $request->kerja,
-            'alamat'=> $request->alamat,
-            'nama_kepala'=> $request->kepala,
-            'tgl_registrasi' => $date,
-            'status' => 1
-        ]);
-
-        return redirect('/dashboard/pasien/data')->with('alert-success','Data diri anda sudah terkirim');
-
-    }
-
-     function pasien_data(){
-         $data = Pasien::orderBy('id','desc')->get();
-        return view('admin.pasien_data',[
-            'data' =>$data
-        ]);
-    }
-    function pasien_edit($id){
-          $data = Pasien::where('id',$id)->get();
-        return view('admin.pasien_edit',[
-            'data' =>$data
-        ]);
-    }
-
-    function pasien_update(){
-        
-    }
-    function pasien_delete(){
-               Pasien::where('id',$id)->delete();
-        return redirect('/dashboard/pasien/data')->with('alert-success','Data Berhasil');  
-    }
-
-
-    // pegawai
-
-    function pegawai(){
-        $data=Pegawai::orderBy('id','desc')->get();
-        return view('admin.pegawai_data',[
-            'data' =>$data
-        ]);
-
-    }
-
-    function pegawai_add(){
-        return view('admin.pegawai_add');
-    }
-
-    function pegawai_act(Request $request){
-            $request->validate([
-                'nama' => 'required',
-                'nip' => 'required'
-            ]);
-
-             $date=date('Y-m-d');
-
-         DB::table('pegawai')->insert([
-            'nama' => $request->nama,
-            'nip' =>$request->nip,
-            'jenis_kelamin' => $request->kelamin,
-            'tanggal_lahir' => $request->tgl_lhr,
-            'tempat_lahir' => $request->tmp_lhr,
-            'alamat' => $request->alamat,
-            'telepon' => $request->no_hp,
-            'jabatan' => $request->jabatan,
-            'pendidikan_nama' => $request->pendidikan,
-            'pendidikan_tahun_lulus' => $request->thn_lulus,
-            'pendidikan_tk_ijazah' => $request->pt_ijazah,
-            // 'pangkat' => $request->pangkat,
-            'tmt_cpns' => $request->cpns,
-            'tanggal' => date('Y-m-d'),
-
-            'status' => 1
-        ]);
-
-        return redirect('/dashboard/pegawai/data')->with('alert-success','Data diri anda sudah terkirim');
-
-
-    }
-
-    function pegawai_edit($id){
-        $data=Pegawai::where('id',$id)->get();
-        return view('admin.pegawai_edit',[
-            'data' => $data
-        ]);
-    }
-    function pegawai_update(Request $request){
-          $request->validate([
-                'nama' => 'required',
-                'nip' => 'required'
-            ]);
-            $id=$request->id;
-
-             $date=date('Y-m-d');
-
-         DB::table('pegawai')->where('id',$id)->update([
-            'nama' => $request->nama,
-            'nip' =>$request->nip,
-            'jenis_kelamin' => $request->kelamin,
-            'tanggal_lahir' => $request->tgl_lhr,
-            'tempat_lahir' => $request->tmp_lhr,
-            'alamat' => $request->alamat,
-            'telepon' => $request->no_hp,
-            'jabatan' => $request->jabatan,
-            'pendidikan_nama' => $request->pendidikan,
-            'pendidikan_tahun_lulus' => $request->thn_lulus,
-            'pendidikan_tk_ijazah' => $request->pt_ijazah,
-            // 'pangkat' => $request->pangkat,
-            'tmt_cpns' => $request->cpns,
-            'status' => 1
-        ]);
-
-        return redirect('/dashboard/pegawai/data')->with('alert-success','Data diri anda sudah terkirim');
-
-    }
-
-    function pegawai_delete($id){
-                 Pegawai::where('id',$id)->delete();
-        return redirect('/dashboard/pegawai/data')->with('alert-success','Data Berhasil');
-    }
-
-
-    // data dokter
-    function dokter(){
-        $data=Dokter::orderBy('id','desc')->get();
-        return view('admin.dokter_data',[
-            'data' => $data
-        ]);
-    }
-    function dokter_add(){
-        return view('admin.dokter_add');
-    }
-    function dokter_act(Request $request){
-            $request->validate([
-                'nama' => 'required',
-                'nip' => 'required'
-            ]);
-
-             $date=date('Y-m-d');
-
-         DB::table('dokter')->insert([
-            'nama' => $request->nama,
-            'nip' =>$request->nip,
-            'jenis_kelamin' => $request->kelamin,
-            'tanggal_lahir' => $request->tgl_lhr,
-            'tempat_lahir' => $request->tmp_lhr,
-            'alamat' => $request->alamat,
-            'telepon' => $request->no_hp,
-            'poli' => $request->poli,
-            'tanggal' =>$date,
-            'status' => 1
-        ]);
-        return redirect('/dashboard/dokter/data')->with('alert-success','Data Berhasil disimpan');
-
-    }
-    function dokter_edit($id){
-        $data=Dokter::where('id',$id)->get();
-        return view('admin.dokter_edit',[
-            'data' => $data
-        ]);
-    }
-    function dokter_update(Request $request){
-        $request->validate([
-                'nama' => 'required',
-                'nip' => 'required'
-            ]);
-            $id=$request->id;
-             $date=date('Y-m-d');
-
-         DB::table('dokter')->where('id',$id)->update([
-            'nama' => $request->nama,
-            'nip' =>$request->nip,
-            'jenis_kelamin' => $request->kelamin,
-            'tanggal_lahir' => $request->tgl_lhr,
-            'tempat_lahir' => $request->tmp_lhr,
-            'alamat' => $request->alamat,
-            'telepon' => $request->no_hp,
-            'poli' => $request->poli,
-        ]);
-        return redirect('/dashboard/dokter/data')->with('alert-success','Data Berhasil diubah');
-
-    }
-    function dokter_delete($id){
-        Dokter::where('id',$id)->delete();
-        return redirect('/dashboard/dokter/data')->with('alert-success','Data Berhasil terhapus');
-
-    }
-
-
-
-
-
-    // data poli
-
-function poli(){
-    $data=Poli::orderBy('id','desc')->get();
-        return view('admin.poli_data',[
-            'data' =>$data
-        ]);
-}
-function  poli_act(Request $request){
-       $request->validate([
-            'nama' => 'required',
-        ]);
-
-         DB::table('poli')->insert([
-            'prosedur' => $request->nama,
-        ]);
-        return redirect('/dashboard/poli/data')->with('alert-success','Data Berhasil');
-
-}
-function  poli_edit($id){
-    $dpoli=Poli::where('id',$id)->get();
-       $data=Poli::orderBy('id','desc')->get();
-        return view('admin.poli_edit',[
-            'data' =>$data,
-            'poli' => $dpoli
-        ]);
-}
-function  poli_update(Request $request){
-        $request->validate([
-            'nama' => 'required',
-        ]);
-
-        $id=$request->id;
-         DB::table('poli')->where('id',$id)->update([
-            'prosedur' => $request->nama,
-        ]);
-        return redirect('/dashboard/poli/data')->with('alert-success','Data Berhasil');
-
-
-}
-function  poli_delete($id){
-         Poli::where('id',$id)->delete();
-        return redirect('/dashboard/poli/data')->with('alert-success','Data Berhasil');
-       
-}
-
-
-// rekam medis
-function  rekam(){
-    $data=Rekam::orderBy('id','desc')->get();
-        return view('admin.rekam_data',[
-            'data' =>$data
-        ]);
-}
-
-
- function profile(){
-    return view('admin.v_profile');
- }
-
-  function struktur(){
-    return view('admin.v_struktur');
- }
-
-   function pelayanan(){
-    return view('admin.v_pelayanan');
- }
-    function visimisi(){
-    return view('admin.v_visimisi');
- }
-
-   function galeri(){
-    return view('admin.v_galeri');
- }
-
-
+    
  function role(){
      $data=Admin::orderBy('id','asc')->get();
      return view('admin.r_role_data',[

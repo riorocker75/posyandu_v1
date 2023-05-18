@@ -27,6 +27,15 @@ class TblIndikator extends Migration
                  $table->text('akta_lahir')->nullable();
                  $table->text('jaminan_kesehatan')->nullable();
                  $table->text('pengasuhan')->nullable();
+
+                 $table->text('tinggi')->nullable();
+                 $table->text('berat')->nullable();
+                 $table->text('panjang')->nullable();
+                 
+                 $table->text('suntikan')->nullable();
+                 $table->text('hasil')->nullable();
+                
+
                  $table->dateTime('tanggal')->nullable();
                  $table->text('status')->nullable();
             });

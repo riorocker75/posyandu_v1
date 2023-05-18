@@ -47,6 +47,39 @@
 
                         <input type="hidden" class="form-control" name="balita_id" value="{{$indikator->id}}">
                    </div>  
+
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Tinggi badan</label>
+                        <input type="text" class="form-control" name="tinggi" value="{{$dt->tinggi}}" required>
+                   </div>
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Berat badan</label>
+                        <input type="text" class="form-control" name="berat" value="{{$dt->berat}}" required>
+                   </div>
+
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Panjang</label>
+                        <input type="text" class="form-control" name="panjang" value="{{$dt->panjang}}" required>
+                   </div>
+
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Suntikan Imunisasi</label>
+                        <input type="text" class="form-control" name="suntikan"  value="{{$dt->suntikan}}" required>
+                   </div>
+
+                   <div class="form-group">
+                    <label for="exampleInputEmail1">Hasil Pemantauan</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio"value="y" {{ $dt->ukur_berat == 'y' ? 'checked' : ''}} name="hasil">
+                            <label class="form-check-label">Sehat</label>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="n" {{ $dt->ukur_berat == 'n' ? 'checked' : ''}} name="hasil">
+                        <label class="form-check-label">Stunting</label>
+                    </div>
+                 </div>
+
                    
                    <div class="form-group">
                     <label for="exampleInputEmail1">Tanggal Input</label>

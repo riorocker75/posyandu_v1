@@ -64,6 +64,11 @@
                                 <input type="number" class="form-control" min="1" max="1000" name="umur" value="{{$dt->umur}}" required>
                             </div>
 
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">Nama Orang Tua</label>
+                              <input type="text" class="form-control" name="orang_tua"  required>
+                          </div>
+
                  </div>
 
             

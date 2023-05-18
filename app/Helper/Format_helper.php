@@ -409,6 +409,14 @@ function status_transfer($status){
                 echo "x";
             }
         }
+        
+        function format_hasil($format){
+            if($format == "y"){
+                echo "Sehat";
+            }elseif($format == "n"){
+                echo "Stunting";
+            }
+        }
 
         function format_kelamin($f){
             if($f == 1){
